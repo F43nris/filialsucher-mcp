@@ -8,8 +8,6 @@ Dieser MCP Server ermöglicht AI-Assistenten und anderen MCP Clients den standar
 
 **⚠️ Mock-Modus:** Die aktuelle Implementation nutzt `MockFilialfinderClient` mit realistischen Beispieldaten, da kein Zugriff auf die Sparkasse REST API besteht. Ein `RealFilialfinderClient` kann via `FilialfinderPort`-Interface eingepluggt werden, sobald API-Zugangsdaten verfügbar sind.
 
-**🎯 Für Case Study:** Dieses Projekt beantwortet die Frage "Ist es möglich den Filialsucher MCP Server umzusetzen ohne das Projektbudget von 5.000€ zu überschreiten?" mit einem funktionierenden Proof-of-Concept. Siehe `npm run demo` für sofortige Demonstration aller Features.
-
 ## Architektur
 
 Das Projekt folgt einer sauberen Schichtenarchitektur:
