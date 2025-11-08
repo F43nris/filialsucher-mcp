@@ -8,6 +8,8 @@ Dieser MCP Server ermöglicht AI-Assistenten und anderen MCP Clients den standar
 
 **⚠️ Mock-Modus:** Die aktuelle Implementation nutzt `MockFilialfinderClient` mit realistischen Beispieldaten, da kein Zugriff auf die Sparkasse REST API besteht. Ein `RealFilialfinderClient` kann via `FilialfinderPort`-Interface eingepluggt werden, sobald API-Zugangsdaten verfügbar sind.
 
+**🎯 Für Case Study:** Dieses Projekt beantwortet die Frage "Ist es möglich den Filialsucher MCP Server umzusetzen ohne das Projektbudget von 5.000€ zu überschreiten?" mit einem funktionierenden Proof-of-Concept. Siehe `npm run demo` für sofortige Demonstration aller Features.
+
 ## Architektur
 
 Das Projekt folgt einer sauberen Schichtenarchitektur:
@@ -41,21 +43,40 @@ npm install
 # Build the project
 npm run build
 
-# Test the server
-
 # Run demo (shows all 5 tools with JSON output)
 npm run demo
+
+# Or start MCP server for Claude Desktop
 npm start
 ```
 
 ## Usage
+
+### Quick Demo
+
+The fastest way to see the MCP server in action:
+
+```bash
+npm run demo
+```
+
+This executes all 5 tools and displays their structured JSON responses, demonstrating:
+- Location-based search with filters (radius, type, facilities)
+- Detailed facility information with opening hours and contact data
+- Available facilities and object types
+- Server configuration
 
 ### Configuration
 
 **Environment Variables** (optional in mock mode):
 
 ```bash
-# Set manually or create .env file
+# Copy template and adjust if needed
+cp .env.example .env
+```
+
+Or set manually:
+```bash
 export FILIALFINDER_BASE_URL=https://filialfinder-service.sparkasse.de
 export FILIALFINDER_API_KEY=your_api_key_here
 export FILIALFINDER_BLZ=50050000
@@ -181,6 +202,7 @@ filialsucher-mcp/
 ├── src/
 │   ├── index.ts                         # Entry point
 │   ├── config.ts                        # Configuration
+│   ├── demo.ts                          # Demo script
 │   ├── mcpServer.ts                     # MCP wrapper
 │   ├── domain/
 │   │   ├── models.ts                   # Domain models
@@ -219,12 +241,3 @@ Für den Produktiveinsatz sind folgende Schritte notwendig:
 4. **Monitoring**: Logging und Metrics (z.B. OpenTelemetry)
 5. **Rate Limiting**: Schutz vor Überlastung der Sparkasse API
 6. **Testing**: Unit Tests für alle Layer, Integration Tests mit Test-API
-
-## License
-
-MIT
-
-## Author
-
-David Berezowski
-
